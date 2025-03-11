@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Official Bank Landing Page</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
     <style>
         .primary-color { color: #d40000; } /* Red */
         .secondary-color { color: #0033a0; } /* Blue */
@@ -15,15 +16,24 @@
     
     <!-- Navbar -->
     <nav class="bg-white shadow-md py-4">
-        <div class="container mx-auto flex justify-between items-center px-4">
-            <h1 class="text-xl font-bold primary-color">Bank of Trust</h1>
-            <ul class="hidden md:flex space-x-6">
-                <li><a href="#" class="secondary-color font-medium">Home</a></li>
-                <li><a href="#" class="secondary-color font-medium">Services</a></li>
-                <li><a href="#" class="secondary-color font-medium">About</a></li>
-                <li><a href="#" class="secondary-color font-medium">Contact</a></li>
-            </ul>
-            <button class="md:hidden text-xl">&#9776;</button>
+        <div class="container mx-auto flex justify-between items-center px-4" x-data="{ open: false }">
+            <div class="flex items-center space-x-2">
+                <img src="https://via.placeholder.com/40" alt="Bank Logo" class="w-8 h-8">
+                <h1 class="text-xl font-bold primary-color">Bank of America</h1>
+            </div>
+            <button @click="open = !open" class="md:hidden text-xl">&#9776;</button>
+            <div :class="open ? 'block' : 'hidden'" class="md:flex md:items-center md:justify-center md:space-x-6 absolute md:static top-16 left-0 w-full bg-white md:bg-transparent shadow-md md:shadow-none p-4 md:p-0">
+                <ul class="md:flex md:space-x-6 flex flex-col md:flex-row text-center">
+                    <li><a href="#" class="secondary-color font-medium">Home</a></li>
+                    <li><a href="#" class="secondary-color font-medium">Services</a></li>
+                    <li><a href="#" class="secondary-color font-medium">About</a></li>
+                    <li><a href="#" class="secondary-color font-medium">Contact</a></li>
+                </ul>
+                <div class="mt-4 md:mt-0 flex flex-col md:flex-row md:space-x-4 text-center">
+                    <a href="#" class="px-4 py-2 bg-blue-600 text-white rounded-lg">Log In</a>
+                    <a href="#" class="px-4 py-2 bg-green-600 text-white rounded-lg mt-2 md:mt-0">Sign Up</a>
+                </div>
+            </div>
         </div>
     </nav>
     
