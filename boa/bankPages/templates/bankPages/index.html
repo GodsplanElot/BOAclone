@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Official Bank Landing Page</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        .primary-color { color: #d40000; } /* Red */
+        .secondary-color { color: #0033a0; } /* Blue */
+        .accent-color { color: #008000; } /* Green */
+    </style>
+</head>
+<body class="bg-gray-100">
+    
+    <!-- Navbar -->
+    <nav class="bg-white shadow-md py-4">
+        <div class="container mx-auto flex justify-between items-center px-4">
+            <h1 class="text-xl font-bold primary-color">Bank of Trust</h1>
+            <ul class="hidden md:flex space-x-6">
+                <li><a href="#" class="secondary-color font-medium">Home</a></li>
+                <li><a href="#" class="secondary-color font-medium">Services</a></li>
+                <li><a href="#" class="secondary-color font-medium">About</a></li>
+                <li><a href="#" class="secondary-color font-medium">Contact</a></li>
+            </ul>
+            <button class="md:hidden text-xl">&#9776;</button>
+        </div>
+    </nav>
+    
+    <!-- Hero Section -->
+    <header class="bg-white text-center py-16">
+        <h2 class="text-4xl font-bold primary-color">Banking Made Simple & Secure</h2>
+        <p class="text-gray-600 mt-4">Your trusted partner for all financial needs.</p>
+        <button class="mt-6 px-6 py-2 bg-blue-600 text-white rounded-lg shadow-md">Get Started</button>
+    </header>
+    
+    <!-- Features Section -->
+    <section class="container mx-auto px-4 py-12 grid md:grid-cols-3 gap-8">
+        <div class="bg-white p-6 shadow-lg text-center rounded-lg">
+            <h3 class="text-xl font-semibold accent-color">Secure Transactions</h3>
+            <p class="text-gray-600 mt-2">We prioritize security to protect your money.</p>
+        </div>
+        <div class="bg-white p-6 shadow-lg text-center rounded-lg">
+            <h3 class="text-xl font-semibold secondary-color">Fast Payments</h3>
+            <p class="text-gray-600 mt-2">Experience instant and seamless transactions.</p>
+        </div>
+        <div class="bg-white p-6 shadow-lg text-center rounded-lg">
+            <h3 class="text-xl font-semibold primary-color">24/7 Support</h3>
+            <p class="text-gray-600 mt-2">We are here to assist you anytime, anywhere.</p>
+        </div>
+    </section>
+    
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white text-center py-6">
+        <p>&copy; 2025 Bank of Trust. All rights reserved.</p>
+    </footer>
+    
+</body>
+</html>
