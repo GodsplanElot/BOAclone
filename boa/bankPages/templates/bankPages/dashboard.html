@@ -9,6 +9,7 @@
 <body>
     <h2>Welcome to Your Dashboard</h2>
     <p>Hello, {{ user.username }}!</p>
+    <p class="text-3xl font-bold text-green-500">₦{{ balance }}</p>
     <a href="{% url 'deposit' %}">Deposit</a> |
     <a href="{% url 'withdraw' %}">Withdraw</a> |
     <a href="{% url 'transactions' %}">Transactions</a> |

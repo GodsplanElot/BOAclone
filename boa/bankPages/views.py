@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
+from .models import UserProfile
 
 
 # Create your views here.
@@ -8,7 +9,12 @@ def home(request):
 
 @login_required
 def dashboard(request):
-    return render(request, 'bankPages/dashboard.html')
+    # Get the logged-in user's profile
+    user_profile = UserProfile.objects.get(user=request.user)
+
+    # Pass the balance to the template
+    context = {'balance': user_profile.balance}
+    return render(request, 'bankPages/dashboard.html', context)
 
 @login_required
 def deposit(request):
