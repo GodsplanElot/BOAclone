@@ -1,6 +1,5 @@
 from django.db import models
-
-# Create your models here.
+from decimal import Decimal
 from django.contrib.auth.models import User
 import random
 import string
@@ -23,47 +22,57 @@ def generate_session_id():
 # User Profile Model to store account number
 class UserProfile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    account_number = models.CharField(max_length=10, unique=True, default=generate_account_number)
     balance = models.DecimalField(max_digits=12, decimal_places=2, default=0.00)
+    account_number = models.CharField(max_length=10, unique=True, blank=True)
+
+    def save(self, *args, **kwargs):
+        if not self.account_number:
+            self.account_number = ''.join(random.choices(string.digits, k=10))
+        super().save(*args, **kwargs)
 
     def __str__(self):
         return f"{self.user.username} - {self.account_number}"
 
 # Transaction Model
 class Transaction(models.Model):
-    TRANSACTION_TYPES = [
+    sender_name = models.CharField(max_length=255)  # Superuser manually inputs this
+    receiver = models.ForeignKey(User, on_delete=models.CASCADE, related_name="transactions_received")
+    amount = models.DecimalField(max_digits=10, decimal_places=2)
+    transaction_type = models.CharField(max_length=50, choices=[
         ('deposit', 'Deposit'),
         ('withdrawal', 'Withdrawal'),
         ('transfer', 'Transfer'),
-    ]
-    STATUS_CHOICES = [
+    ])
+    status = models.CharField(max_length=20, choices=[
         ('pending', 'Pending'),
         ('completed', 'Completed'),
         ('failed', 'Failed'),
-    ]
-    
-    sender_name = models.CharField(max_length=255)  # Admin inputs sender name manually
-    receiver = models.ForeignKey(UserProfile, on_delete=models.CASCADE)
-    amount = models.DecimalField(max_digits=12, decimal_places=2)
-    transaction_type = models.CharField(max_length=20, choices=TRANSACTION_TYPES)
-    status = models.CharField(max_length=20, choices=STATUS_CHOICES, default='pending')
-    transaction_id = models.CharField(max_length=7, unique=True, default=generate_transaction_id)
-    session_id = models.CharField(max_length=7, unique=True, default=generate_session_id)
+    ], default='pending')
+    session_id = models.CharField(max_length=7, unique=True, blank=True)
+    transaction_id = models.CharField(max_length=7, unique=True, blank=True)
     timestamp = models.DateTimeField(auto_now_add=True)
 
-    def save(self, *args, **kwargs):
-        if self.status == 'completed':
-            if self.transaction_type == 'deposit':
-                self.receiver.balance += self.amount
-            elif self.transaction_type == 'withdrawal':
-                self.receiver.balance -= self.amount
-            elif self.transaction_type == 'transfer':
-                sender_profile = UserProfile.objects.get(account_number=self.sender_name)  # Assuming sender is another user
-                sender_profile.balance -= self.amount
-                sender_profile.save()
-                self.receiver.balance += self.amount
-            self.receiver.save()
-        super().save(*args, **kwargs)
+def save(self, *args, **kwargs):
+    # Ensure receiver has a UserProfile
+    receiver_profile, created = UserProfile.objects.get_or_create(user=self.receiver)
+
+    # Generate unique session_id and transaction_id
+    if not self.session_id:
+        self.session_id = generate_session_id()
+    if not self.transaction_id:
+        self.transaction_id = generate_transaction_id()
+
+    # Automatically update receiver balance for deposits and transfers
+    if self.status == 'completed':
+        if self.transaction_type in ['deposit', 'transfer']:
+            receiver_profile.balance += Decimal(self.amount)  # Corrected balance update
+        elif self.transaction_type == 'withdrawal':
+            receiver_profile.balance -= Decimal(self.amount)  # Corrected balance update
+
+        receiver_profile.save()  # Save the updated balance
+
+    super().save(*args, **kwargs)
+
 
     def __str__(self):
-        return f"{self.transaction_id} - {self.receiver.user.username}"
+        return f"{self.transaction_id} - {self.status}"
