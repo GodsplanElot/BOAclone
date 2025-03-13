@@ -14,8 +14,8 @@
             {% for message in messages %}
                 <li>
                     <strong>{{ message.subject }}</strong><br>
-                    <small>From Admin | {{ message.timestamp }}</small>
-                    <p>{{ message.body }}</p>
+                    <small>{{ message.sender }} | {{ message.timestamp }}</small>
+                    <p>{{ message.content }}</p>
                 </li>
                 <hr>
             {% endfor %}
