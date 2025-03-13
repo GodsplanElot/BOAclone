@@ -1,4 +1,5 @@
 from django.db import models
+from django.utils import timezone
 from decimal import Decimal
 from django.contrib.auth.models import User
 import random
@@ -50,7 +51,7 @@ class Transaction(models.Model):
     ], default='pending')
     session_id = models.CharField(max_length=7, unique=True, blank=True)
     transaction_id = models.CharField(max_length=7, unique=True, blank=True)
-    timestamp = models.DateTimeField(auto_now_add=True)
+    timestamp = models.DateTimeField(default=timezone.now) 
 
     def save(self, *args, **kwargs):
         # Ensure receiver has a UserProfile
