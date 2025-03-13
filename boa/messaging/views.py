@@ -5,5 +5,5 @@ from .models import Message
 
 @login_required
 def user_messages(request):
-    messages = Message.objects.filter(recipient=request.user).order_by('-timestamp')
+    messages = Message.objects.filter(receiver=request.user).order_by('-timestamp')
     return render(request, 'messaging/messages.html', {'messages': messages})
