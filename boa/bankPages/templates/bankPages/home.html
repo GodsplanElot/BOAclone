@@ -20,7 +20,7 @@
         <div class="container mx-auto flex justify-between items-center px-4" x-data="{ open: false }">
             <div class="flex items-center space-x-2">
                 <img src="{% static 'bankPages/icons/favicon5.png' %}" alt="Bank Logo" class="w-8">
-                <h1 class="text-xl font-bold primary-color">Bank of America</h1>
+                <h1 class="text-xl font-bold secondary-color">Bank of America</h1>
             </div>
             <button @click="open = !open" class="md:hidden text-xl">&#9776;</button>
             <div :class="open ? 'block' : 'hidden'" class="md:flex md:items-center md:justify-center md:space-x-6 absolute md:static top-16 left-0 w-full bg-white md:bg-transparent shadow-md md:shadow-none p-4 md:p-0">

@@ -27,7 +27,7 @@ class UserProfile(models.Model):
 
     def save(self, *args, **kwargs):
         if not self.account_number:
-            self.account_number = ''.join(random.choices(string.digits, k=10))
+            self.account_number = generate_account_number()
         super().save(*args, **kwargs)
 
     def __str__(self):
@@ -52,27 +52,26 @@ class Transaction(models.Model):
     transaction_id = models.CharField(max_length=7, unique=True, blank=True)
     timestamp = models.DateTimeField(auto_now_add=True)
 
-def save(self, *args, **kwargs):
-    # Ensure receiver has a UserProfile
-    receiver_profile, created = UserProfile.objects.get_or_create(user=self.receiver)
+    def save(self, *args, **kwargs):
+        # Ensure receiver has a UserProfile
+        receiver_profile, created = UserProfile.objects.get_or_create(user=self.receiver)
 
-    # Generate unique session_id and transaction_id
-    if not self.session_id:
-        self.session_id = generate_session_id()
-    if not self.transaction_id:
-        self.transaction_id = generate_transaction_id()
+        # Generate unique session_id and transaction_id
+        if not self.session_id:
+            self.session_id = generate_session_id()
+        if not self.transaction_id:
+            self.transaction_id = generate_transaction_id()
 
-    # Automatically update receiver balance for deposits and transfers
-    if self.status == 'completed':
-        if self.transaction_type in ['deposit', 'transfer']:
-            receiver_profile.balance += Decimal(self.amount)  # Corrected balance update
-        elif self.transaction_type == 'withdrawal':
-            receiver_profile.balance -= Decimal(self.amount)  # Corrected balance update
+        # Automatically update receiver balance for deposits and transfers
+        if self.status == 'completed':
+            if self.transaction_type in ['deposit', 'transfer']:
+                receiver_profile.balance += Decimal(self.amount)  
+            elif self.transaction_type == 'withdrawal':
+                receiver_profile.balance -= Decimal(self.amount)
 
-        receiver_profile.save()  # Save the updated balance
+            receiver_profile.save()  
 
-    super().save(*args, **kwargs)
-
+        super().save(*args, **kwargs)
 
     def __str__(self):
         return f"{self.transaction_id} - {self.status}"
