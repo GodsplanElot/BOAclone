@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
 from .models import UserProfile
+from .models import Transaction
 
 
 # Create your views here.
@@ -14,8 +15,12 @@ def dashboard(request):
 
 
     # Pass the balance to the template
-    context = {'balance': user_profile.balance}
+    context = {
+        'balance': user_profile.balance,
+        'account_number': user_profile.account_number,  # Add account number here
+    }
     return render(request, 'bankPages/dashboard.html', context)
+
 
 @login_required
 def deposit(request):
@@ -27,7 +32,10 @@ def withdraw(request):
 
 @login_required
 def transactions(request):
-    return render(request, 'bankPages/transactions.html')
+    user_transactions = Transaction.objects.filter(receiver=request.user).order_by('-timestamp')
+
+    context = {'transactions': user_transactions}
+    return render(request, 'bankPages/transactions.html', context)
 
 @login_required
 def profile(request):
