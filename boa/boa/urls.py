@@ -20,5 +20,6 @@ from django.urls import path, include
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('bankPages.urls')),
+    path('messaging/', include('messaging.urls')),
     path('auth/', include('authSystem.urls')),
 ]
