@@ -10,7 +10,8 @@ def home(request):
 @login_required
 def dashboard(request):
     # Get the logged-in user's profile
-    user_profile = UserProfile.objects.get(user=request.user)
+    user_profile, created = UserProfile.objects.get_or_create(user=request.user)
+
 
     # Pass the balance to the template
     context = {'balance': user_profile.balance}
