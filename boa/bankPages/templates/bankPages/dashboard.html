@@ -1,23 +1,99 @@
-{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard</title>
+    <title>Bank Dashboard</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+    <style>
+        .primary-color { color: #d40000; }
+        .secondary-color { color: #0033a0; }
+        .accent-color { color: #008000; }
+    </style>
 </head>
-<body>
-    <h2>Welcome to Your Dashboard</h2>
-    <p>Hello, {{ user.username }}!</p>
-    <p><strong>Account Number:</strong> {{ account_number }}</p>
+<body class="bg-gray-100">
+    <!-- Navbar -->
+    <nav class="bg-white shadow-md py-4">
+        <div class="container mx-auto flex justify-between items-center px-4">
+            <h1 class="text-xl font-bold primary-color">Bank Dashboard</h1>
+            <div class="space-x-4">
+                <a href="{% url 'profile' %}" class="px-4 py-2 bg-blue-600 text-white rounded-lg">Profile</a>
+            </div>
+            <div class="space-x-4">
+                <a href="{% url 'logout' %}" class="px-4 py-2 bg-blue-600 text-white rounded-lg">Log Out</a>
+            </div>
 
-
-    <p class="text-3xl font-bold text-green-500">₦{{ balance }}</p>
-    <a href="{% url 'deposit' %}">Deposit</a> |
-    <a href="{% url 'withdraw' %}">Withdraw</a> |
-    <a href="{% url 'transactions' %}">Transactions</a> |
-    <a href="{% url 'profile' %}">Profile</a> |
-    <a href="{% url 'user_messages' %}">Inbox</a> |
-    <a href="{% url 'logout' %}">Logout</a>
+        </div>
+    </nav>
+    
+    <!-- Dashboard Section -->
+    <section class="container mx-auto px-4 py-8">
+        <h2 class="text-3xl font-bold secondary-color text-center">Welcome Back, {{ user.username }}!</h2>
+        <h2 class="text-3xl font-bold secondary-color text-center">Account, {{ account_number }}</h2>
+        
+        <!-- Balance Cards -->
+        <div class="grid md:grid-cols-3 gap-6 mt-6">
+            <div class="bg-white p-6 rounded-lg shadow-lg">
+                <h3 class="text-lg font-semibold secondary-color">Main Balance</h3>
+                <p class="text-2xl font-bold mt-2">${{ balance }}</p>
+            </div>
+            <div class="bg-white p-6 rounded-lg shadow-lg">
+                <h3 class="text-lg font-semibold secondary-color">Savings Account</h3>
+                <p class="text-2xl font-bold mt-2">$8,750.00</p>
+            </div>
+            <div class="bg-white p-6 rounded-lg shadow-lg">
+                <h3 class="text-lg font-semibold secondary-color">Fixed Deposit</h3>
+                <p class="text-2xl font-bold mt-2">$15,000.00</p>
+            </div>
+            <div class="bg-white p-6 rounded-lg shadow-lg">
+                <h3 class="text-lg font-semibold secondary-color">Investment Account</h3>
+                <p class="text-2xl font-bold mt-2">$20,500.00</p>
+            </div>
+            <div class="bg-white p-6 rounded-lg shadow-lg">
+                <h3 class="text-lg font-semibold secondary-color">Credit Account</h3>
+                <p class="text-2xl font-bold mt-2">-$3,000.00</p>
+            </div>
+        </div>
+        
+        <!-- Quick Actions -->
+        <div class="mt-8 grid md:grid-cols-3 gap-6">
+            <button class="w-full bg-blue-600 text-white py-3 rounded-lg shadow">Transfer Funds</button>
+            <a href="{% url 'deposit' %}"><button class="w-full bg-green-600 text-white py-3 rounded-lg shadow">Deposit Money</button>
+            </a>
+            <a href="{% url 'withdraw' %}"> <button class="w-full bg-red-600 text-white py-3 rounded-lg shadow">Withdraw Money</button>Withdraw</a>
+        </div>
+        
+        <!-- Recent Transactions -->
+        <div class="mt-12 bg-white p-6 shadow-lg rounded-lg">
+            <a href="{% url 'transactions' %}">Transactions</a>
+            <a href="{% url 'user_messages' %}">Inbox</a>
+            <h3 class="text-xl font-semibold secondary-color">Recent Transactions</h3>
+            <ul class="mt-4 space-y-3">
+                <li class="flex justify-between border-b pb-2">
+                    <span>Amazon Purchase</span>
+                    <span class="text-red-500">-$120.00</span>
+                </li>
+                <li class="flex justify-between border-b pb-2">
+                    <span>Salary Deposit</span>
+                    <span class="text-green-500">+$5,000.00</span>
+                </li>
+                <li class="flex justify-between border-b pb-2">
+                    <span>Utility Bill</span>
+                    <span class="text-red-500">-$230.00</span>
+                </li>
+                <li class="flex justify-between border-b pb-2">
+                    <span>Stock Investment</span>
+                    <span class="text-green-500">+$1,500.00</span>
+                </li>
+            </ul>
+        </div>
+    </section>
+    
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white text-center py-6">
+        <p>&copy; 2025 Bank of Trust. All rights reserved.</p>
+    </footer>
 </body>
 </html>
+
