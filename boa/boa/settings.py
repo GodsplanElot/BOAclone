@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'authSystem',
     'messaging',
     'customer_support',
+    'withdrawals',
 ]
 
 MIDDLEWARE = [
