@@ -12,7 +12,7 @@ def withdrawal_request(request):
             withdrawal = form.save(commit=False)
             withdrawal.user = request.user
             withdrawal.save()
-            return render(request, "withdrawals/success.html")  # Redirect after success
+            return render(request, "withdrawals/success.html") # Redirect after success
     else:
         form = WithdrawalForm()
 
