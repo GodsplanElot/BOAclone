@@ -25,9 +25,9 @@
             <button @click="open = !open" class="md:hidden text-xl">&#9776;</button>
             <div :class="open ? 'block' : 'hidden'" class="md:flex md:items-center md:justify-center md:space-x-6 absolute md:static top-16 left-0 w-full bg-white md:bg-transparent shadow-md md:shadow-none p-4 md:p-0">
                 <ul class="md:flex md:space-x-6 flex flex-col md:flex-row text-center">
-                    <li><a href="#" class="secondary-color font-medium">Home</a></li>
-                    <li><a href="/" class="secondary-color font-medium">Services</a></li>
-                    <li><a href="#" class="secondary-color font-medium">About</a></li>
+                    <li><a href="{% url 'home' %}" class="secondary-color font-medium">Home</a></li>
+                    <li><a href="#" class="secondary-color font-medium">Services</a></li>
+                    <li><a href="{% url 'about' %}" class="secondary-color font-medium">About</a></li>
                     <li><a href="#" class="secondary-color font-medium">Contact</a></li>
                 </ul>
                 <div class="mt-4 md:mt-0 flex flex-col md:flex-row md:space-x-4 text-center">

@@ -1,0 +1,22 @@
+{% extends "bankPages/base.html" %}
+
+{% block title %}Welcome {% endblock %}
+
+{% block content %}
+    <section class="container mx-auto px-4 py-16 text-center">
+        <h2 class="text-4xl font-bold secondary-color">About Us</h2>
+        <p class="text-gray-600 mt-4 max-w-2xl mx-auto">Bank of Trust is committed to providing secure, efficient, and transparent banking services. Our mission is to empower individuals and businesses with cutting-edge financial solutions.</p>
+        <div class="grid md:grid-cols-2 gap-8 mt-12">
+            <div class="bg-white p-6 shadow-lg rounded-lg">
+                <img src="" alt="Insert Image Here" class="w-full h-64 object-cover rounded-lg">
+                <h3 class="text-xl font-semibold primary-color mt-4">Our Mission</h3>
+                <p class="text-gray-600 mt-2">We aim to redefine banking by focusing on security, efficiency, and customer satisfaction.</p>
+            </div>
+            <div class="bg-white p-6 shadow-lg rounded-lg">
+                <img src="" alt="Insert Image Here" class="w-full h-64 object-cover rounded-lg">
+                <h3 class="text-xl font-semibold accent-color mt-4">Why Choose Us</h3>
+                <p class="text-gray-600 mt-2">Our bank offers unparalleled financial services, ensuring trust and excellence in every transaction.</p>
+            </div>
+        </div>
+    </section>
+{% endblock %}

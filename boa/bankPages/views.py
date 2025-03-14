@@ -7,6 +7,9 @@ from .models import Transaction
 # Create your views here.
 def home(request):
     return render(request, 'bankPages/home.html')
+# Create your views here.
+def about(request):
+    return render(request, 'bankPages/about.html')
 
 @login_required
 def dashboard(request):
