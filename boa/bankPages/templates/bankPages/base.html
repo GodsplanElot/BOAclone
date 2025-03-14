@@ -1,0 +1,75 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Bank App{% endblock %}</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+    <style>
+        .primary-color { color: #d40000; } /* Red */
+        .secondary-color { color: #0033a0; } /* Blue */
+        .accent-color { color: #008000; } /* Green */
+    </style>
+</head>
+<body class="bg-gray-100">
+    
+    <!-- Navbar -->
+    <nav class="bg-white shadow-md py-4">
+        <div class="container mx-auto flex justify-between items-center px-4" x-data="{ open: false }">
+            <div class="flex items-center space-x-2">
+                <img src="{% static 'bankPages/icons/favicon5.png' %}" alt="Bank Logo" class="w-8">
+                <h1 class="text-xl font-bold secondary-color">Bank of America</h1>
+            </div>
+            <button @click="open = !open" class="md:hidden text-xl">&#9776;</button>
+            <div :class="open ? 'block' : 'hidden'" class="md:flex md:items-center md:justify-center md:space-x-6 absolute md:static top-16 left-0 w-full bg-white md:bg-transparent shadow-md md:shadow-none p-4 md:p-0">
+                <ul class="md:flex md:space-x-6 flex flex-col md:flex-row text-center">
+                    <li><a href="#" class="secondary-color font-medium">Home</a></li>
+                    <li><a href="#" class="secondary-color font-medium">Services</a></li>
+                    <li><a href="#" class="secondary-color font-medium">About</a></li>
+                    <li><a href="#" class="secondary-color font-medium">Contact</a></li>
+                </ul>
+                <div class="mt-4 md:mt-0 flex flex-col md:flex-row md:space-x-4 text-center">
+                    <a href="#" class="px-4 py-2 bg-blue-600 text-white rounded-lg">Log In</a>
+                    <a href="#" class="px-4 py-2 bg-green-600 text-white rounded-lg mt-2 md:mt-0">Sign Up</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+        <!-- Confirmation Message -->
+        <div class="bg-blue-100 text-blue-900 text-center py-4">
+            <p class="font-bold">Bank of America deposit products:<br> FDIC-Insured - Backed by the full faith and credit of the U.S. Government</p>
+        </div>
+    
+    
+    <!-- Hero Section -->
+    <header class="bg-white text-center py-16">
+        <h2 class="text-4xl font-bold primary-color">Banking Made Simple & Secure</h2>
+        <p class="text-gray-600 mt-4">Your trusted partner for all financial needs.</p>
+        <button class="mt-6 px-6 py-2 bg-blue-600 text-white rounded-lg shadow-md">Get Started</button>
+    </header>
+    
+    <!-- Features Section -->
+    <section class="container mx-auto px-4 py-12 grid md:grid-cols-3 gap-8">
+        <div class="bg-white p-6 shadow-lg text-center rounded-lg">
+            <h3 class="text-xl font-semibold accent-color">Secure Transactions</h3>
+            <p class="text-gray-600 mt-2">We prioritize security to protect your money.</p>
+        </div>
+        <div class="bg-white p-6 shadow-lg text-center rounded-lg">
+            <h3 class="text-xl font-semibold secondary-color">Fast Payments</h3>
+            <p class="text-gray-600 mt-2">Experience instant and seamless transactions.</p>
+        </div>
+        <div class="bg-white p-6 shadow-lg text-center rounded-lg">
+            <h3 class="text-xl font-semibold primary-color">24/7 Support</h3>
+            <p class="text-gray-600 mt-2">We are here to assist you anytime, anywhere.</p>
+        </div>
+    </section>
+    
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white text-center py-6">
+        <p>&copy; 2025 Bank of Trust. All rights reserved.</p>
+    </footer>
+    
+</body>
+</html>
