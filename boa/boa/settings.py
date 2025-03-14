@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'bankPages',
     'authSystem',
     'messaging',
+    'customer_support',
 ]
 
 MIDDLEWARE = [
