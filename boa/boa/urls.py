@@ -22,5 +22,7 @@ urlpatterns = [
     path('', include('bankPages.urls')),
     path('messaging/', include('messaging.urls')),
     path('auth/', include('authSystem.urls')),
-     path('customer-support/', include('customer_support.urls')),
+    path('customer-support/', include('customer_support.urls')),
+    path("withdrawals/", include("withdrawals.urls")),
+
 ]
