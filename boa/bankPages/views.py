@@ -10,6 +10,8 @@ def home(request):
 # Create your views here.
 def about(request):
     return render(request, 'bankPages/about.html')
+def service(request):
+    return render(request, 'bankPages/service.html')
 
 @login_required
 def dashboard(request):
