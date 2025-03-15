@@ -10,65 +10,72 @@
         .primary-color { color: #d40000; }
         .secondary-color { color: #0033a0; }
         .accent-color { color: #008000; }
+        .highlight-card { background: linear-gradient(135deg, #0033a0, #002080); color: white; }
     </style>
 </head>
 <body class="bg-gray-100">
     <!-- Navbar -->
     <nav class="bg-white shadow-md py-4">
-        <div class="container mx-auto flex justify-between items-center px-4">
-            <h1 class="text-xl font-bold primary-color">Bank Dashboard</h1>
-            <div class="space-x-4">
-                <a href="{% url 'profile' %}" class="px-4 py-2 bg-blue-600 text-white rounded-lg">Profile</a>
+        <div class="container mx-auto flex justify-between items-center px-6">
+            <h1 class="text-2xl font-bold primary-color">Bank Dashboard</h1>
+            <div class="flex space-x-4">
+                <a href="{% url 'profile' %}" class="px-4 py-2 bg-gray-800 text-white rounded-lg">Profile</a>
+                <a href="{% url 'logout' %}" class="px-4 py-2 bg-red-600 text-white rounded-lg">Log Out</a>
             </div>
-            <div class="space-x-4">
-                <a href="{% url 'logout' %}" class="px-4 py-2 bg-blue-600 text-white rounded-lg">Log Out</a>
-            </div>
-
         </div>
     </nav>
     
     <!-- Dashboard Section -->
-    <section class="container mx-auto px-4 py-8">
+    <section class="container mx-auto px-6 py-10">
         <h2 class="text-3xl font-bold secondary-color text-center">Welcome Back, {{ user.username }}!</h2>
-        <h2 class="text-3xl font-bold secondary-color text-center">Account, {{ account_number }}</h2>
+        <h3 class="text-lg text-gray-600 text-center mb-6">Account Number: {{ account_number }}</h3>
+        
+        <!-- Main Balance Highlight -->
+        <div class="highlight-card p-8 rounded-lg shadow-lg text-center mb-8">
+            <h3 class="text-xl font-semibold">Main Balance</h3>
+            <p class="text-4xl font-bold mt-2">${{ balance }}</p>
+        </div>
         
         <!-- Balance Cards -->
-        <div class="grid md:grid-cols-3 gap-6 mt-6">
-            <div class="bg-white p-6 rounded-lg shadow-lg">
-                <h3 class="text-lg font-semibold secondary-color">Main Balance</h3>
-                <p class="text-2xl font-bold mt-2">${{ balance }}</p>
-            </div>
-            <div class="bg-white p-6 rounded-lg shadow-lg">
+        <div class="grid md:grid-cols-3 gap-6">
+            <div class="bg-white p-6 rounded-lg shadow-md border border-gray-200">
                 <h3 class="text-lg font-semibold secondary-color">Savings Account</h3>
                 <p class="text-2xl font-bold mt-2">$8,750.00</p>
             </div>
-            <div class="bg-white p-6 rounded-lg shadow-lg">
+            <div class="bg-white p-6 rounded-lg shadow-md border border-gray-200">
                 <h3 class="text-lg font-semibold secondary-color">Fixed Deposit</h3>
                 <p class="text-2xl font-bold mt-2">$15,000.00</p>
             </div>
-            <div class="bg-white p-6 rounded-lg shadow-lg">
+            <div class="bg-white p-6 rounded-lg shadow-md border border-gray-200">
                 <h3 class="text-lg font-semibold secondary-color">Investment Account</h3>
                 <p class="text-2xl font-bold mt-2">$20,500.00</p>
             </div>
-            <div class="bg-white p-6 rounded-lg shadow-lg">
+            <div class="bg-white p-6 rounded-lg shadow-md border border-gray-200">
                 <h3 class="text-lg font-semibold secondary-color">Credit Account</h3>
-                <p class="text-2xl font-bold mt-2">-$3,000.00</p>
+                <p class="text-2xl font-bold mt-2 text-red-600">-$3,000.00</p>
             </div>
         </div>
         
         <!-- Quick Actions -->
-        <div class="mt-8 grid md:grid-cols-3 gap-6">
-            <button class="w-full bg-blue-600 text-white py-3 rounded-lg shadow">Transfer Funds</button>
-            <a href="{% url 'deposit' %}"><button class="w-full bg-green-600 text-white py-3 rounded-lg shadow">Deposit Money</button>
+        <div class="mt-10 grid md:grid-cols-3 gap-6">
+            <button class="w-full bg-blue-600 text-white py-3 rounded-lg shadow-md hover:bg-blue-700">Transfer Funds</button>
+            <a href="{% url 'deposit' %}">
+                <button class="w-full bg-green-600 text-white py-3 rounded-lg shadow-md hover:bg-green-700">Deposit Money</button>
             </a>
-            <a href="{% url 'withdrawal_request' %}"> <button class="w-full bg-red-600 text-white py-3 rounded-lg shadow">Withdraw Money</button>Withdraw</a>
+            <a href="{% url 'withdrawal_request' %}">
+                <button class="w-full bg-red-600 text-white py-3 rounded-lg shadow-md hover:bg-red-700">Withdraw Money</button>
+            </a>
         </div>
         
         <!-- Recent Transactions -->
         <div class="mt-12 bg-white p-6 shadow-lg rounded-lg">
-            <a href="{% url 'transactions' %}">Transactions</a>
-            <a href="{% url 'user_messages' %}">Inbox</a>
-            <h3 class="text-xl font-semibold secondary-color">Recent Transactions</h3>
+            <div class="flex justify-between items-center mb-4">
+                <h3 class="text-xl font-semibold secondary-color">Recent Transactions</h3>
+                <div class="space-x-4">
+                    <a href="{% url 'transactions' %}" class="text-blue-600 hover:underline">View All</a>
+                    <a href="{% url 'user_messages' %}" class="text-green-600 hover:underline">Inbox</a>
+                </div>
+            </div>
             <ul class="mt-4 space-y-3">
                 <li class="flex justify-between border-b pb-2">
                     <span>Amazon Purchase</span>
@@ -96,4 +103,3 @@
     </footer>
 </body>
 </html>
-
