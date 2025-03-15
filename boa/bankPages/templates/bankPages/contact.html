@@ -1,27 +1,8 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Contact Us</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
-    <style>
-        .primary-color { color: #d40000; }
-        .secondary-color { color: #0033a0; }
-        .accent-color { color: #008000; }
-    </style>
-</head>
-<body class="bg-gray-100">
-    <!-- Navbar -->
-    <nav class="bg-white shadow-md py-4">
-        <div class="container mx-auto flex justify-between items-center px-4">
-            <h1 class="text-xl font-bold primary-color">Contact Us</h1>
-            <div class="space-x-4">
-                <a href="#" class="px-4 py-2 bg-blue-600 text-white rounded-lg">Back to Dashboard</a>
-            </div>
-        </div>
-    </nav>
+{% extends "bankPages/base.html" %}
+
+{% block title %}Welcome {% endblock %}
+
+{% block content %}
     
     <!-- Contact Section -->
     <section class="container mx-auto px-4 py-12">
@@ -47,9 +28,4 @@
         </div>
     </section>
     
-    <!-- Footer -->
-    <footer class="bg-gray-900 text-white text-center py-6">
-        <p>&copy; 2025 Bank of Trust. All rights reserved.</p>
-    </footer>
-</body>
-</html>
+    {% endblock %}
