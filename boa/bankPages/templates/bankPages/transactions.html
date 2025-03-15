@@ -1,37 +1,83 @@
-{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Transaction History</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+    <style>
+        .primary-color { color: #d40000; }
+        .secondary-color { color: #0033a0; }
+        .accent-color { color: #008000; }
+    </style>
 </head>
-<body>
-    <h2>Your Transactions</h2>
-
-    {% if transactions %}
-        <table border="1">
-            <tr>
-                <th>Transaction ID</th>
-                <th>Amount</th>
-                <th>Type</th>
-                <th>Status</th>
-                <th>Date</th>
-            </tr>
-            {% for transaction in transactions %}
-                <tr>
-                    <td>{{ transaction.transaction_id }}</td>
-                    <td>₦{{ transaction.amount }}</td>
-                    <td>{{ transaction.transaction_type }}</td>
-                    <td>{{ transaction.status }}</td>
-                    <td>{{ transaction.timestamp }}</td>
-                </tr>
-            {% endfor %}
-        </table>
-    {% else %}
-        <p>No transactions found.</p>
-    {% endif %}
-
+<body class="bg-gray-100">
+    <!-- Navbar -->
+    <nav class="bg-white shadow-md py-4">
+        <div class="container mx-auto flex justify-between items-center px-4">
+            <h1 class="text-xl font-bold primary-color">Transaction History</h1>
+            <div class="space-x-4">
+                <a href="#" class="px-4 py-2 bg-blue-600 text-white rounded-lg">Back to Dashboard</a>
+            </div>
+        </div>
+    </nav>
+    
+    <!-- Transactions Section -->
+    <section class="container mx-auto px-4 py-8">
+        <h2 class="text-3xl font-bold secondary-color text-center">Your Transactions</h2>
+        <div class="mt-6 bg-white p-6 shadow-lg rounded-lg overflow-x-auto">
+            {% if transactions %}
+            <table class="w-full border-collapse hidden md:table">
+                <thead>
+                    <tr class="bg-gray-200">
+                        <th class="py-2 px-4 border">Transaction ID</th>
+                        <th class="py-2 px-4 border">Sender Name</th>
+                        <th class="py-2 px-4 border">Amount</th>
+                        <th class="py-2 px-4 border">Type</th>
+                        <th class="py-2 px-4 border">Status</th>
+                        <th class="py-2 px-4 border">Session ID</th>
+                        <th class="py-2 px-4 border">Date</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for transaction in transactions %}
+                    <tr class="border-b">
+                        <td class="py-2 px-4">{{ transaction.transaction_id }}</td>
+                        <td class="py-2 px-4">{{ transaction.sender_name }}</td>
+                        <td class="py-2 px-4 text-green-500">₦{{ transaction.amount }}</td>
+                        <td class="py-2 px-4">{{ transaction.transaction_type }}</td>
+                        <td class="py-2 px-4 text-gray-600">{{ transaction.status }}</td>
+                        <td class="py-2 px-4">{{ transaction.session_id }}</td>
+                        <td class="py-2 px-4">{{ transaction.timestamp }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+            
+            <!-- Mobile View -->
+            <div class="md:hidden space-y-4 mt-4">
+                {% for transaction in transactions %}
+                <div class="bg-gray-50 p-4 rounded-lg shadow-lg">
+                    <p><strong>Transaction ID:</strong> {{ transaction.transaction_id }}</p>
+                    <p><strong>Sender Name:</strong> {{ transaction.sender_name }}</p>
+                    <p class="text-green-500"><strong>Amount:</strong> ₦{{ transaction.amount }}</p>
+                    <p><strong>Type:</strong> {{ transaction.transaction_type }}</p>
+                    <p><strong>Status:</strong> {{ transaction.status }}</p>
+                    <p><strong>Session ID:</strong> {{ transaction.session_id }}</p>
+                    <p><strong>Date:</strong> {{ transaction.timestamp }}</p>
+                </div>
+                {% endfor %}
+            </div>
+            {% else %}
+                <p class="text-center text-gray-500">No transactions found.</p>
+            {% endif %}
+        </div>
+    </section>
     <a href="{% url 'dashboard' %}">Back to Dashboard</a>
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white text-center py-6">
+        <p>&copy; 2025 Bank of Trust. All rights reserved.</p>
+    </footer>
 </body>
 </html>

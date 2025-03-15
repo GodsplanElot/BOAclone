@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Deposit Funds</title>
+    <title>{{ user.username }} | Profile</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
     <style>
@@ -16,7 +16,7 @@
     <!-- Navbar -->
     <nav class="bg-white shadow-md py-4">
         <div class="container mx-auto flex justify-between items-center px-4">
-            <h1 class="text-xl font-bold primary-color">Deposit Funds</h1>
+            <h1 class="text-xl font-bold secondary-color">Thank you for banking with, BOA || {{ user.username }}. </h1>
             <div class="space-x-4">
                 <a href="{% url 'dashboard' %}" class="px-4 py-2 bg-blue-600 text-white rounded-lg">Back to Dashboard</a>
             </div>
