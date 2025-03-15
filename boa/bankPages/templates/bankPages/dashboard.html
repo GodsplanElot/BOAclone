@@ -15,13 +15,33 @@
 </head>
 <body class="bg-gray-100">
     <!-- Navbar -->
-    <nav class="bg-white shadow-md py-4">
-        <div class="container mx-auto flex justify-between items-center px-6">
-            <h1 class="text-2xl font-bold primary-color">Bank Dashboard</h1>
-            <div class="flex space-x-4">
-                <a href="{% url 'profile' %}" class="px-4 py-2 bg-gray-800 text-white rounded-lg">Profile</a>
-                <a href="{% url 'logout' %}" class="px-4 py-2 bg-red-600 text-white rounded-lg">Log Out</a>
+    <nav class="bg-white shadow-md">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16">
+                <div class="flex items-center">
+                    <span class="text-xl font-bold text-blue-600">MyBank</span>
+                </div>
+                <div class="hidden md:flex space-x-6 items-center">
+                    <a href="{% url 'dashboard' %}" class="text-gray-700 hover:text-blue-600">Dashboard</a>
+                    <a href="{% url 'profile' %}" class="text-gray-700 hover:text-blue-600">Profile</a>
+                    <a href="{% url 'transactions' %}" class="text-gray-700 hover:text-blue-600">Transaction</a>
+                    <a href="#" class="text-gray-700 hover:text-blue-600">Contact</a>
+                </div>
+                <div class="md:hidden flex items-center">
+                    <button id="menu-btn" class="focus:outline-none">
+                        <svg class="w-6 h-6 text-gray-700" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                        </svg>
+                    </button>
+                </div>
             </div>
+        </div>
+        <div id="mobile-menu" class="hidden md:hidden bg-white shadow-md">
+            <a href="{% url 'dashboard' %}" class="block px-4 py-2 text-gray-700 hover:bg-gray-200">Dashboard</a>
+            <a href="{% url 'profile' %}" class="block px-4 py-2 text-gray-700 hover:bg-gray-200">Profile</a>
+            <a href="{% url 'transactions' %}" class="block px-4 py-2 text-gray-700 hover:bg-gray-200">Transaction</a>
+            <a href="#" class="block px-4 py-2 text-gray-700 hover:bg-gray-200">Services</a>
+            <a href="#" class="block px-4 py-2 text-gray-700 hover:bg-gray-200">Contact</a>
         </div>
     </nav>
     
@@ -101,5 +121,14 @@
     <footer class="bg-gray-900 text-white text-center py-6">
         <p>&copy; 2025 Bank of Trust. All rights reserved.</p>
     </footer>
+    <script>
+        const menuBtn = document.getElementById('menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        menuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+    </script>
+
 </body>
 </html>

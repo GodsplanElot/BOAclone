@@ -1,17 +1,78 @@
-{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Send Messages</title>
+    <title>Send a Message</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+    <style>
+        .secondary-color { color: #0033a0; }
+        .glassmorphism {
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+    </style>
 </head>
-<body>
-    <form method="post">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit">Send</button>
-    </form>
-    <a href="{% url 'dashboard' %}">Back to Dashboard</a>
+<body class="bg-gray-100 min-h-screen">
+    <!-- Navbar -->
+    <nav class="bg-white shadow-md py-3">
+        <div class="container mx-auto flex flex-wrap justify-between items-center px-4">
+            <h1 class="text-base md:text-lg font-bold secondary-color">Secured Pages</h1>
+            
+            <div class="relative group">
+                <button class="px-4 py-2 bg-blue-600 text-white rounded-lg">Pages</button>
+                <div class="absolute hidden group-hover:flex flex-col bg-white glassmorphism mt-2 rounded-lg w-48 p-2">
+                    <a href="#" class="block px-4 py-2 hover:bg-gray-100 rounded">Dashboard</a>
+                    <a href="#" class="block px-4 py-2 hover:bg-gray-100 rounded">Profile</a>
+                    <a href="#" class="block px-4 py-2 hover:bg-gray-100 rounded">Transactions</a>
+                    <a href="#" class="block px-4 py-2 hover:bg-gray-100 rounded">Settings</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <div class="flex items-center justify-center mt-10">
+        <div class="bg-white shadow-lg rounded-lg p-6 w-full max-w-lg">
+            <h2 class="text-2xl font-bold text-center secondary-color mb-4">Send a Message</h2>
+            
+            <form method="post" class="space-y-4" id="messageForm" onsubmit="showNotification(event)">
+                {% csrf_token %}
+
+                <div>
+                    <label for="id_subject" class="block text-sm font-medium text-gray-700">Subject</label>
+                    <input type="text" name="subject" id="id_subject" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Enter message subject..." required>
+                </div>
+
+                <div>
+                    <label for="id_message" class="block text-sm font-medium text-gray-700">Message</label>
+                    <textarea name="message" id="id_message" rows="4" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Type your message..." required></textarea>
+                </div>
+
+                <button type="submit" class="w-full bg-blue-600 text-white py-3 rounded-lg shadow-md hover:bg-blue-700 transition">Send Message</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Notification Popup -->
+    <div id="notification" class="hidden fixed top-5 right-5 bg-green-500 text-white p-4 rounded-lg shadow-lg flex items-center space-x-4">
+        <span>Message sent successfully!</span>
+        <button onclick="closeNotification()" class="text-white font-bold">&times;</button>
+    </div>
+
+    <script>
+        function showNotification(event) {
+            event.preventDefault(); // Prevent form submission
+            document.getElementById('notification').classList.remove('hidden');
+            setTimeout(closeNotification, 5000); // Auto-close after 5 seconds
+        }
+
+        function closeNotification() {
+            document.getElementById('notification').classList.add('hidden');
+        }
+    </script>
 </body>
 </html>
