@@ -12,6 +12,8 @@ def about(request):
     return render(request, 'bankPages/about.html')
 def service(request):
     return render(request, 'bankPages/service.html')
+def contact(request):
+    return render(request, 'bankPages/contact.html')
 
 @login_required
 def dashboard(request):
