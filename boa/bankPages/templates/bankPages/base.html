@@ -29,11 +29,19 @@
                     <li><a href="{% url 'service' %}" class="secondary-color font-medium">Services</a></li>
                     <li><a href="{% url 'about' %}" class="secondary-color font-medium">About</a></li>
                     <li><a href="{% url 'contact' %}" class="secondary-color font-medium">Contact</a></li>
-                </ul>
-                <div class="mt-4 md:mt-0 flex flex-col md:flex-row md:space-x-4 text-center">
-                    <a href="{% url 'login' %}" class="px-4 py-2 bg-blue-600 text-white rounded-lg">Log In</a>
-                    <a href="{% url 'register' %}" class="px-4 py-2 bg-green-600 text-white rounded-lg mt-2 md:mt-0">Sign Up</a>
-                </div>
+                    {% if request.user.is_authenticated %}
+                    <hr>
+                        <li><a href="{% url 'dashboard' %}" class="secondary-color font-medium">Dashboard</a></li>
+                        <li><a href="{% url 'transactions' %}" class="secondary-color font-medium">Transactions</a></li>
+                        <li><a href="{% url 'profile' %}" class="secondary-color font-medium">Profile</a></li>
+                        <li><a href="{% url 'logout' %}" class="px-4 py-2 bg-blue-600 text-white rounded-lg">Logout</a></li>
+                        </ul>
+                    {% else %}
+                        <div class="mt-4 md:mt-0 flex flex-col md:flex-row md:space-x-4 text-center">
+                            <a href="{% url 'login' %}" class="px-4 py-2 bg-blue-600 text-white rounded-lg">Log In</a>
+                            <a href="{% url 'register' %}" class="px-4 py-2 bg-green-600 text-white rounded-lg mt-2 md:mt-0">Sign Up</a>
+                        </div>
+                    {% endif %}
             </div>
         </div>
     </nav>
