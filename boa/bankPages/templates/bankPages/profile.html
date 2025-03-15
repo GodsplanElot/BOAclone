@@ -17,16 +17,36 @@
     <!-- Navbar -->
     <nav class="bg-white shadow-md py-3">
         <div class="container mx-auto flex flex-wrap justify-between items-center px-4">
+            <!-- Bank Greeting -->
             <h1 class="text-base md:text-lg font-bold secondary-color text-center md:text-left">
                 Thank you for banking with BOA, {{ user.username }}.
             </h1>
-            <div class="mt-2 md:mt-0">
+    
+            <!-- Navigation Icons & Button -->
+            <div class="flex items-center space-x-4 mt-2 md:mt-0">
+                <!-- Messages Icon -->
+                <a href="{% url 'user_messages' %}" class="relative group">
+                    <svg class="w-6 h-6 text-gray-700 group-hover:text-blue-600 transition-colors" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M8 10h.01M12 10h.01M16 10h.01M21 12c0 4-4 7-9 7a9.32 9.32 0 01-4-.8l-4 2 1-3.5A7.92 7.92 0 013 12c0-4 4-7 9-7s9 3 9 7z"></path>
+                    </svg>
+                    <span class="absolute top-0 right-0 block h-2 w-2 bg-red-500 rounded-full"></span>
+                </a>
+    
+                <!-- Customer Support Icon -->
+                <a href="{% url 'support_messages' %}" class="group">
+                    <svg class="w-6 h-6 text-gray-700 group-hover:text-green-600 transition-colors" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M18 10c0-3.866-3.582-7-8-7S2 6.134 2 10s3.582 7 8 7c.697 0 1.376-.065 2.032-.186l3.258 2.12a1 1 0 001.528-.854v-2.5c.755-.697 1.184-1.681 1.184-2.68z"></path>
+                    </svg>
+                </a>
+    
+                <!-- Back to Dashboard Button -->
                 <a href="{% url 'dashboard' %}" class="px-3 py-2 bg-blue-600 text-white rounded-lg text-sm md:text-base">
                     Back to Dashboard
                 </a>
             </div>
         </div>
     </nav>
+    
 
     <section class="container mx-auto px-4 py-8">
         <div class="max-w-4xl mx-auto bg-white shadow-lg rounded-lg overflow-hidden">
