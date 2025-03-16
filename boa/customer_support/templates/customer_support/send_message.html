@@ -1,102 +1,8 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Message Us NOW</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-  <!--   <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script> -->
-    <style>
-        .primary-color { color: #d40000; }
-        .secondary-color { color: #0033a0; }
-        .accent-color { color: #008000; }
-        .highlight-card { background: linear-gradient(135deg, #0033a0, #002080); color: white; }
-    </style>
-</head>
-<body class="bg-gray-100">
-    <!-- Navbar -->
-    
-    <nav class="bg-white shadow-md">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between h-16">
-                <div class="flex items-center">
-                    <span class="text-xl font-bold text-blue-600">MyBank</span>
-                </div>
-    
-                <!-- Desktop Menu -->
+{% extends "bankPages/sbase.html" %}
 
- <!-- Desktop Menu -->
+{% block title %}Customer care {% endblock %}
 
-    
-                    <!-- About without dropdown -->
-                    <a href="{% url 'dashboard' %}" class="text-gray-700 hover:text-blue-600">Dashboard</a>
-                    <!-- Services without dropdown -->
-                    <a href="{% url 'profile' %}" class="text-gray-700 hover:text-blue-600">Profile</a>
-                    <!-- Services without dropdown -->
-                    <a href="{% url 'transactions' %}" class="text-gray-700 hover:text-blue-600">Transaction</a>
-
-                    <div class="hidden md:flex space-x-6 items-center">
-                        <!-- Home with Dropdown -->
-                        <div class="relative">
-                            <button onclick="toggleDropdown('home-dropdown')" class="text-gray-700 hover:text-blue-600">More..</button>
-                           
-                                <a href="{% url 'deposit' %}" class="block px-4 py-2 text-gray-700 hover:bg-gray-200">Deposit</a>
-                           
-                           
-                                <a href="{% url 'transactions' %}" class="block px-4 py-2 text-gray-700 hover:bg-gray-200">Transactions</a>
-                           
-                           
-                                <a href="{% url 'user_messages' %}" class="block px-4 py-2 text-gray-700 hover:bg-gray-200">Inbox</a>
-                           
-                           
-                                <a href="{% url 'send_support_message' %}" class="block px-4 py-2 text-gray-700 hover:bg-gray-200">Customer care</a>
-                           
-                        </div>
-    
-                    <a href="{% url 'logout' %}" class="text-gray-700 hover:text-blue-600">Logout</a>
-                </div>
-    
-                <!-- Mobile Menu Button -->
-                <div class="md:hidden flex items-center">
-                    <button id="menu-btn" class="focus:outline-none">
-                        <svg class="w-6 h-6 text-gray-700" fill="none" stroke="currentColor" viewBox="0 0 24 24"
-                            xmlns="http://www.w3.org/2000/svg">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="M4 6h16M4 12h16M4 18h16"></path>
-                        </svg>
-                    </button>
-                </div>
-            </div>
-        </div>
-    
-        <!-- Mobile Menu -->
-        <div id="mobile-menu" class="hidden md:hidden bg-white shadow-md">
-            <!-- About without dropdown -->
-            <a href="{% url 'dashboard' %}" class="block px-4 py-2 text-gray-700 hover:bg-gray-200">Dashboard</a>
-            <!-- Services without dropdown -->
-            <a href="{% url 'profile' %}" class="block px-4 py-2 text-gray-700 hover:bg-gray-200">Profile</a>
-            <!-- Services without dropdown -->
-            <a href="{% url 'transactions' %}" class="block px-4 py-2 text-gray-700 hover:bg-gray-200">Transactions</a>
-
-            <!-- Home with Dropdown -->
-            <div>
-                <button class="w-full text-left px-4 py-2 text-gray-700 hover:bg-gray-200 flex justify-between items-center"
-                    onclick="toggleDropdown('mobile-home-dropdown')">
-                    More..
-                    <span>▼</span>
-                </button>
-                <div id="mobile-home-dropdown" class="hidden bg-gray-100">
-                    <a href="{% url 'deposit' %}" class="block px-4 py-2 text-gray-700 hover:bg-gray-300">Deposit</a>
-                    <a href="{% url 'transactions' %}" class="block px-4 py-2 text-gray-700 hover:bg-gray-300">Transactions</a>
-                    <a href="{% url 'withdrawal_request' %}" class="block px-4 py-2 text-gray-700 hover:bg-gray-300">Withdrawal</a>
-                    <a href="{% url 'user_messages' %}" class="block px-4 py-2 text-gray-700 hover:bg-gray-300">Inbox</a>
-                    <a href="{% url 'send_support_message'%}" class="block px-4 py-2 text-gray-700 hover:bg-gray-300">Customer Care</a>
-                </div>
-            </div>
-    
-            <a href="{% url 'logout' %}" class="block px-4 py-2 text-gray-700 hover:bg-gray-200">Logout</a>
-        </div>
-    </nav>
+{% block content %}
     <div class="flex items-center justify-center mt-10">
         <div class="bg-white shadow-lg rounded-lg p-6 w-full max-w-lg">
             <h2 class="text-2xl font-bold text-center secondary-color mb-4">Send a Message</h2>
@@ -138,25 +44,4 @@
     </script>
 
 
-    <!-- JavaScript -->
-    <script>
-        document.addEventListener("DOMContentLoaded", function () {
-            const menuBtn = document.getElementById("menu-btn");
-            const mobileMenu = document.getElementById("mobile-menu");
-    
-            menuBtn.addEventListener("click", function () {
-                mobileMenu.classList.toggle("hidden");
-            });
-        });
-    
-        function toggleDropdown(id) {
-            document.querySelectorAll(".absolute").forEach(dropdown => {
-                if (dropdown.id !== id) {
-                    dropdown.classList.add("hidden");
-                }
-            });
-            document.getElementById(id).classList.toggle("hidden");
-        }
-    </script>
-</body>
-</html>
+  {% endblock %}
