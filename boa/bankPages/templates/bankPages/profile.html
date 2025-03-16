@@ -1,11 +1,8 @@
-{% load static %}
 {% extends "bankPages/sbase.html" %}
-
+{% load static %}
 {% block title %}{{ user.username }} - Profile {% endblock %}
 
 {% block content %}
-    
-
     <section class="container mx-auto px-4 py-8">
         <div class="max-w-4xl mx-auto bg-white shadow-lg rounded-lg overflow-hidden">
             <div class="bg-blue-600 p-6 text-white flex items-center">
@@ -76,5 +73,4 @@
             </div>
         </div>
     </section> 
-
 {% endblock %}
