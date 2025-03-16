@@ -36,27 +36,4 @@
         </div>
     </section>
     
-    <a href="{% url 'dashboard' %}">Back to Dashboard</a>
-
-        <!-- JavaScript -->
-        <script>
-            document.addEventListener("DOMContentLoaded", function () {
-                const menuBtn = document.getElementById("menu-btn");
-                const mobileMenu = document.getElementById("mobile-menu");
-        
-                menuBtn.addEventListener("click", function () {
-                    mobileMenu.classList.toggle("hidden");
-                });
-            });
-        
-            function toggleDropdown(id) {
-                document.querySelectorAll(".absolute").forEach(dropdown => {
-                    if (dropdown.id !== id) {
-                        dropdown.classList.add("hidden");
-                    }
-                });
-                document.getElementById(id).classList.toggle("hidden");
-            }
-        </script>
-</body>
-</html>
+   {% endblock %}
