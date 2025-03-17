@@ -15,23 +15,35 @@
             </div>
 
             <button type="submit"
-                class="w-full bg-red-600 text-white py-3 rounded-lg shadow-md hover:bg-red-700 transition"
-                onclick="showPopup(event)">
-                Request Withdrawal
+            class="w-full bg-red-600 text-white py-3 rounded-lg shadow-md hover:bg-red-700 transition"
+            onclick="handleFormSubmit(event)">
+            Request Withdrawal
             </button>
+        
         </form>
     </div>
 </div>
 
 <script>
-    function showPopup(event) {
-        event.preventDefault(); // Prevents default form submission
-        alert("Your withdrawal request has been submitted successfully!");
+  function handleFormSubmit(event) {
+      event.preventDefault(); // Prevent default form submission
 
-        // Optional: Automatically submit form after showing alert
-        setTimeout(() => {
-            event.target.closest("form").submit();
-        }, 500);
-    }
+      Swal.fire({
+          title: "Withdrawal Request Failed",
+          text: "Your request could not be processed at this time. Please check your inbox for more details.",
+          icon: "error",
+          confirmButtonText: "OK",
+          timer: 3000, // Auto-close after 3 sec
+          showClass: {
+              popup: 'animate__animated animate__fadeInDown'
+          },
+          hideClass: {
+              popup: 'animate__animated animate__fadeOutUp'
+          }
+      }).then(() => {
+          event.target.closest("form").submit(); // Submit form after alert
+      });
+  }
 </script>
+
 {% endblock %}
