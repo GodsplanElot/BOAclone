@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'messaging',
     'customer_support',
     'withdrawals',
+    'userdetails',
 ]
 
 MIDDLEWARE = [
