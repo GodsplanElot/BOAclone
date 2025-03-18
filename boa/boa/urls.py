@@ -24,5 +24,6 @@ urlpatterns = [
     path('auth/', include('authSystem.urls')),
     path('customer-support/', include('customer_support.urls')),
     path("withdrawals/", include("withdrawals.urls")),
+     path('userdetails/', include('userdetails.urls')),
 
 ]
