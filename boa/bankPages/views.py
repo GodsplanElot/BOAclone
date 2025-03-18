@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from userdetails.models import UserDetails
 from django.contrib.auth.decorators import login_required
 from .models import UserProfile
 from .models import Transaction
@@ -46,4 +47,5 @@ def transactions(request):
 
 @login_required
 def profile(request):
-    return render(request, 'bankPages/profile.html')
+    profile, created = UserDetails.objects.get_or_create(user=request.user)
+    return render(request, 'bankPages/profile.html', {'profile': profile})

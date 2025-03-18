@@ -73,4 +73,26 @@
             </div>
         </div>
     </section> 
+
+
+
+    <p><strong>Username:</strong> {{ request.user.username }}</p>
+    <p><strong>Full Name:</strong> {{ profile.first_name }} {{ profile.middle_name }} {{ profile.last_name }}</p>
+    <p><strong>Phone:</strong> {{ profile.phone_number }}</p>
+    <p><strong>Address:</strong> {{ profile.address }}</p>
+    <p><strong>Account Type:</strong> {{ profile.account_type }}</p>
+    <p><strong>Branch:</strong> {{ profile.branch }}</p>
+    <p><strong>KYC Status:</strong> 
+        {% if profile.kyc_status %}
+            <span class="text-green-600 font-bold">Verified ✅</span>
+        {% else %}
+            <span class="text-red-600 font-bold">Not Verified ❌</span>
+        {% endif %}
+    </p>
+
+
+
+
+
+
 {% endblock %}
