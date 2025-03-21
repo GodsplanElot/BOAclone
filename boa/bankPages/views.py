@@ -48,5 +48,6 @@ def transactions(request):
 @login_required
 def profile(request):
     profile, created = UserDetails.objects.get_or_create(user=request.user)
+    user_profile = UserProfile.objects.get(user=request.user)
 
-    return render(request, 'bankPages/profile.html', {'profile': profile})
+    return render(request, 'bankPages/profile.html', {'profile': profile}, {"user_profile": user_profile})
