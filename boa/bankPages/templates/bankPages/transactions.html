@@ -26,7 +26,7 @@
                     <tr class="border-b">
                         <td class="py-2 px-4">{{ transaction.transaction_id }}</td>
                         <td class="py-2 px-4">{{ transaction.sender_name }}</td>
-                        <td class="py-2 px-4 text-green-500">₦{{ transaction.amount }}</td>
+                        <td class="py-2 px-4 text-green-500">${{ transaction.amount }}</td>
                         <td class="py-2 px-4">{{ transaction.transaction_type }}</td>
                         <td class="py-2 px-4 text-gray-600">{{ transaction.status }}</td>
                         <td class="py-2 px-4">{{ transaction.session_id }}</td>
