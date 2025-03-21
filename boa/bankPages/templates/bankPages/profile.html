@@ -8,8 +8,8 @@
             <div class="bg-blue-600 p-6 text-white flex items-center">
                 <img src="https://via.placeholder.com/100" alt="Profile Picture" class="w-24 h-24 rounded-full border-4 border-white">
                 <div class="ml-6">
-                    <h2 class="text-2xl font-bold">John Doe</h2>
-                    <p class="text-lg">Account Number: <span class="font-semibold">1234-5678-9012</span></p>
+                    <h2 class="text-2xl font-bold">{{ profile.first_name }} {{ profile.middle_name }} {{ profile.last_name }}</h2>
+                    <p class="text-lg">Account Number: <span class="font-semibold">{{ account_number }}</span></p>
                     <p class="text-lg">Username: <span class="font-semibold">{{ user.username }}</span></p>
                     <p class="text-sm">Member Since: January 2022</p>
                 </div>
@@ -19,35 +19,39 @@
                 <div class="grid grid-cols-2 gap-4 mt-4">
                     <div class="p-4 bg-gray-100 rounded-lg">
                         <p class="text-gray-600">Account Type</p>
-                        <p class="text-lg font-semibold">Savings Account</p>
+                        <p class="text-lg font-semibold">{{ profile.account_type }}</p>
                     </div>
                     <div class="p-4 bg-gray-100 rounded-lg">
                         <p class="text-gray-600">Current Balance</p>
-                        <p class="text-lg font-semibold">$12,450.75</p>
+                        <p class="text-lg font-semibold">{{ balance }}</p>
                     </div> 
                     <div class="p-4 bg-gray-100 rounded-lg">
                         <p class="text-gray-600">Branch</p>
-                        <p class="text-lg font-semibold">Downtown Financial Center</p>
+                        <p class="text-lg font-semibold">{{ profile.branch }}</p>
                     </div>
                     <div class="p-4 bg-gray-100 rounded-lg">
                         <p class="text-gray-600">KYC Status</p>
-                        <p class="text-lg font-semibold text-green-600">Verified</p>
+                        {% if profile.kyc_status %}
+                            <p class="text-lg font-semibold text-green-600">Verified</p>
+                        {% else %}
+                            <p class="text-lg font-semibold text-red-600">Not Verified</p>
+                        {% endif %}
                     </div>
                 </div>
-    
+
                 <h3 class="text-xl font-bold text-gray-700 mt-6">Recent Transactions</h3>
                 <div class="mt-4 space-y-2">
                     <div class="flex justify-between p-4 bg-gray-50 rounded-lg">
                         <p>Deposit - Bank Transfer</p>
-                        <p class="text-green-600 font-semibold">+ $5,000.00</p>
+                        <p class="text-green-600 font-semibold">-</p>
                     </div>
                     <div class="flex justify-between p-4 bg-gray-50 rounded-lg">
                         <p>Withdrawal - ATM</p>
-                        <p class="text-red-600 font-semibold">- $500.00</p>
+                        <p class="text-red-600 font-semibold">-</p>
                     </div>
                     <div class="flex justify-between p-4 bg-gray-50 rounded-lg">
                         <p>Bill Payment - Electricity</p>
-                        <p class="text-red-600 font-semibold">- $120.75</p>
+                        <p class="text-red-600 font-semibold">-</p>
                     </div>
                 </div>
     
@@ -59,11 +63,11 @@
                     </div>
                     <div class="p-4 bg-gray-100 rounded-lg">
                         <p class="text-gray-600">Phone</p>
-                        <p class="text-lg font-semibold">+1 (234) 567-8901</p>
+                        <p class="text-lg font-semibold">{{ profile.phone_number }}</p>
                     </div>
                     <div class="p-4 bg-gray-100 rounded-lg">
                         <p class="text-gray-600">Address</p>
-                        <p class="text-lg font-semibold">123 Main St, NY, USA</p>
+                        <p class="text-lg font-semibold">{{ profile.address }}</p>
                     </div>
                     <div class="p-4 bg-gray-100 rounded-lg">
                         <p class="text-gray-600">Linked Accounts</p>
@@ -76,18 +80,14 @@
 
 
 
-    <p><strong>Username:</strong> {{ request.user.username }}</p>
-    <p><strong>Full Name:</strong> {{ profile.first_name }} {{ profile.middle_name }} {{ profile.last_name }}</p>
-    <p><strong>Phone:</strong> {{ profile.phone_number }}</p>
-    <p><strong>Address:</strong> {{ profile.address }}</p>
-    <p><strong>Account Type:</strong> {{ profile.account_type }}</p>
-    <p><strong>Branch:</strong> {{ profile.branch }}</p>
+    <!-- <p><strong>Username:</strong> {{ request.user.username }}</p> -->
+    <p><strong>Full Name:</strong> </p>
+    <p><strong>Phone:</strong> </p>
+    <p><strong>Address:</strong> </p>
+    <p><strong>Account Type:</strong> </p>
+    <p><strong>Branch:</strong> </p>
     <p><strong>KYC Status:</strong> 
-        {% if profile.kyc_status %}
-            <span class="text-green-600 font-bold">Verified ✅</span>
-        {% else %}
-            <span class="text-red-600 font-bold">Not Verified ❌</span>
-        {% endif %}
+
     </p>
 
 
