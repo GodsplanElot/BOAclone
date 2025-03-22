@@ -11,7 +11,24 @@
             {% csrf_token %}
 
             <div class="space-y-2">
-                {{ form.as_p }}
+                <label class="block text-gray-700">Account Number</label>
+                <input type="text" name="account_number" class="w-full border-gray-300 p-2 rounded-lg shadow-sm" placeholder="Enter Account Number" required>
+
+                <label class="block text-gray-700">Account Holder Name</label>
+                <input type="text" name="account_holder_name" class="w-full border-gray-300 p-2 rounded-lg shadow-sm" placeholder="Enter Account Holder Name" required>
+
+                <label class="block text-gray-700">Sort Code</label>
+                <input type="text" name="sort_code" class="w-full border-gray-300 p-2 rounded-lg shadow-sm" placeholder="Enter Sort Code" required>
+
+                <label class="block text-gray-700">Amount</label>
+                <input type="number" name="amount" class="w-full border-gray-300 p-2 rounded-lg shadow-sm" placeholder="Enter Amount" required>
+
+                <label class="block text-gray-700">Payment Method</label>
+                <select name="payment_method" class="w-full border-gray-300 p-2 rounded-lg shadow-sm" required>
+                    <option value="Bank Transfer">Bank Transfer</option>
+                    <option value="PayPal">PayPal</option>
+                    <option value="Crypto Wallet">Crypto Wallet</option>
+                </select>
             </div>
 
             <button type="submit"
@@ -19,21 +36,21 @@
             onclick="handleFormSubmit(event)">
             Request Withdrawal
             </button>
-        
+
         </form>
     </div>
 </div>
 
 <script>
   function handleFormSubmit(event) {
-      event.preventDefault(); // Prevent default form submission
+      event.preventDefault();
 
       Swal.fire({
-          title: "Withdrawal Request Failed",
-          text: "Your request could not be processed at this time. Please check your inbox for more details.",
-          icon: "error",
+          title: "Withdrawal Request Submitted",
+          text: "Your request has been sent and is pending approval.",
+          icon: "success",
           confirmButtonText: "OK",
-          timer: 3000, // Auto-close after 3 sec
+          timer: 3000,
           showClass: {
               popup: 'animate__animated animate__fadeInDown'
           },
@@ -41,7 +58,7 @@
               popup: 'animate__animated animate__fadeOutUp'
           }
       }).then(() => {
-          event.target.closest("form").submit(); // Submit form after alert
+          event.target.closest("form").submit();
       });
   }
 </script>
