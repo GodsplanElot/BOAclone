@@ -4,36 +4,63 @@
 
 {% block content %}
  
-    <!-- Hero Section -->
-    <header class="bg-white text-center py-16">
-        <h2 class="text-4xl font-bold primary-color">Banking Made Simple & Secure</h2>
-        <p class="text-gray-600 mt-4">Your ttttrusted partner for all financial needs.</p>
-        <button class="mt-6 px-6 py-2 bg-blue-600 text-white rounded-lg shadow-md">Get Started</button>
-    </header>
+   <!-- Hero Section -->
+<header class="bg-gradient-to-r from-blue-700 to-blue-500 text-white text-center py-16">
+    <h2 class="text-5xl font-bold">Banking Made Simple & Secure</h2>
+    <p class="text-lg mt-4 opacity-90">Your trusted partner for all financial needs.</p>
+    <button class="mt-6 px-8 py-3 bg-white text-blue-700 font-semibold rounded-lg shadow-lg hover:bg-gray-100 transition">
+        Get Started
+    </button>
+</header>
 
-    <!-- Features Section -->
-    <section class="container mx-auto px-4 py-12 grid md:grid-cols-3 gap-8">
-        <!-- Secure Transactions -->
-        <div class="bg-white p-6 shadow-lg text-center rounded-lg">
-            <i class="fas fa-shield-alt text-4xl text-blue-600"></i>
-            <h3 class="text-xl font-semibold accent-color mt-3">Secure Transactions</h3>
-            <p class="text-gray-600 mt-2">We prioritize security to protect your money.</p>
+<!-- Features Section -->
+<section class="container mx-auto px-6 py-12 grid md:grid-cols-3 gap-8">
+    <!-- Secure Transactions -->
+    <div class="bg-white bg-opacity-90 backdrop-blur-lg p-6 shadow-lg text-center rounded-lg border border-blue-200">
+        <i class="fas fa-shield-alt text-5xl text-blue-600"></i>
+        <h3 class="text-2xl font-semibold mt-4 text-blue-700">Secure Transactions</h3>
+        <p class="text-gray-600 mt-2">We prioritize security to protect your money.</p>
+    </div>
+
+    <!-- Fast Payments -->
+    <div class="bg-white bg-opacity-90 backdrop-blur-lg p-6 shadow-lg text-center rounded-lg border border-yellow-200">
+        <i class="fas fa-bolt text-5xl text-yellow-500"></i>
+        <h3 class="text-2xl font-semibold mt-4 text-yellow-600">Fast Payments</h3>
+        <p class="text-gray-600 mt-2">Experience instant and seamless transactions.</p>
+    </div>
+
+    <!-- 24/7 Support -->
+    <div class="bg-white bg-opacity-90 backdrop-blur-lg p-6 shadow-lg text-center rounded-lg border border-green-200">
+        <i class="fas fa-headset text-5xl text-green-600"></i>
+        <h3 class="text-2xl font-semibold mt-4 text-green-700">24/7 Support</h3>
+        <p class="text-gray-600 mt-2">We are here to assist you anytime, anywhere.</p>
+    </div>
+</section>
+
+<!-- Trusted & Insured Logos Marquee -->
+<div class="bg-white py-6">
+    <div class="overflow-hidden whitespace-nowrap">
+        <div class="inline-flex space-x-12 animate-marquee">
+            <img src="{% static 'bankPages/logos/visa.png' %}" alt="Visa" class="h-12 opacity-80">
+            <img src="{% static 'bankPages/logos/mastercard.png' %}" alt="MasterCard" class="h-12 opacity-80">
+            <img src="{% static 'bankPages/logos/paypal.png' %}" alt="PayPal" class="h-12 opacity-80">
+            <img src="{% static 'bankPages/logos/american-express.png' %}" alt="American Express" class="h-12 opacity-80">
+            <img src="{% static 'bankPages/logos/discover.png' %}" alt="Discover" class="h-12 opacity-80">
         </div>
-    
-        <!-- Fast Payments -->
-        <div class="bg-white p-6 shadow-lg text-center rounded-lg">
-            <i class="fas fa-bolt text-4xl text-yellow-500"></i>
-            <h3 class="text-xl font-semibold secondary-color mt-3">Fast Payments</h3>
-            <p class="text-gray-600 mt-2">Experience instant and seamless transactions.</p>
-        </div>
-    
-        <!-- 24/7 Support -->
-        <div class="bg-white p-6 shadow-lg text-center rounded-lg">
-            <i class="fas fa-headset text-4xl text-green-600"></i>
-            <h3 class="text-xl font-semibold primary-color mt-3">24/7 Support</h3>
-            <p class="text-gray-600 mt-2">We are here to assist you anytime, anywhere.</p>
-        </div>
-    </section>
+    </div>
+</div>
+
+<style>
+    @keyframes marquee {
+        from { transform: translateX(100%); }
+        to { transform: translateX(-100%); }
+    }
+    .animate-marquee {
+        display: flex;
+        animation: marquee 10s linear infinite;
+    }
+</style>
+
     
 
 {% endblock %}
