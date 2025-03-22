@@ -20,12 +20,16 @@ def contact(request):
 def dashboard(request):
     # Get the logged-in user's profile
     user_profile, created = UserProfile.objects.get_or_create(user=request.user)
+     # Get the latest 4 transactions for the logged-in user
+    recent_transactions = Transaction.objects.filter(receiver=request.user).order_by('-timestamp')[:4]
+
 
 
     # Pass the balance to the template
     context = {
         'balance': user_profile.balance,
         'account_number': user_profile.account_number,  # Add account number here
+        'recent_transactions': recent_transactions
     }
     return render(request, 'bankPages/dashboard.html', context)
 
