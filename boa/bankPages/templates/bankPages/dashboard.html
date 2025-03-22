@@ -60,28 +60,50 @@
         <!-- Recent Transactions -->
         <div class="mt-12 bg-white p-6 shadow-lg rounded-lg">
             <div class="flex justify-between items-center mb-4">
-                <h3 class="text-xl font-semibold secondary-color">Recent Transactions</h3>
+                <h3 class="text-xl font-semibold text-blue-700">Recent Transactions</h3>
                 <div class="space-x-4">
                     <a href="{% url 'transactions' %}" class="text-blue-600 hover:underline">View All</a>
                 </div>
             </div>
         
-            {% if transactions %}
-                <ul class="mt-4 space-y-3">
-                    {% for transaction in transactions %}
-                        <li class="flex justify-between border-b pb-2">
-                            <span class="font-medium">{{ transaction.transaction_type|title }}</span>
-                            <span class="{% if transaction.transaction_type == 'withdrawal' %}text-red-500{% else %}text-green-500{% endif %}">
-                                {{ transaction.amount|floatformat:2 }}
-                            </span>
-                        </li>
-                    {% endfor %}
-                </ul>
+            {% if recent_transactions %}
+                <div class="overflow-x-auto">
+                    <table class="min-w-full bg-white border border-gray-300 rounded-lg">
+                        <thead>
+                            <tr class="bg-blue-100 text-blue-700">
+                                <th class="py-2 px-4 border-b">Transaction ID</th>
+                                <th class="py-2 px-4 border-b">Amount</th>
+                                <th class="py-2 px-4 border-b">Type</th>
+                                <th class="py-2 px-4 border-b">Status</th>
+                                <th class="py-2 px-4 border-b">Date</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for transaction in recent_transactions %}
+                            <tr class="text-center border-b">
+                                <td class="py-2 px-4">{{ transaction.transaction_id }}</td>
+                                <td class="py-2 px-4 {% if transaction.transaction_type == 'withdrawal' %}text-red-500{% else %}text-green-500{% endif %}">
+                                    ${{ transaction.amount|floatformat:2 }}
+                                </td>
+                                <td class="py-2 px-4 capitalize">{{ transaction.transaction_type }}</td>
+                                <td class="py-2 px-4 {% if transaction.status == 'completed' %}text-green-600{% elif transaction.status == 'failed' %}text-red-600{% else %}text-yellow-600{% endif %}">
+                                    {{ transaction.status|title }}
+                                </td>
+                                <td class="py-2 px-4">{{ transaction.timestamp|date:"M d, Y" }}</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
             {% else %}
                 <p class="text-gray-500 text-center mt-4">No recent transactions available.</p>
             {% endif %}
         </div>
         
     </section>
+
+    
+    
+
 
     {% endblock %}
