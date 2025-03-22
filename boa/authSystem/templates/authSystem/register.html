@@ -14,12 +14,13 @@
 </head>
 <body class="bg-gray-100 flex items-center justify-center h-screen">
 
-    {% for message in messages %}
-    <p class="text-red-500 text-center">{{ message }}</p>
-{% endfor %}
+
 
 <div class="bg-white p-8 rounded-lg shadow-lg w-full max-w-md mx-auto">
     <h2 class="text-3xl font-bold secondary-color text-center">Create an Account</h2>
+    {% for message in messages %}
+        <p class="text-red-500 text-center">{{ message }}</p>
+    {% endfor %}
     <p class="text-center text-gray-600 mt-2">Securely sign up for your online banking</p>
     
     <form method="POST" class="mt-6 space-y-4">
