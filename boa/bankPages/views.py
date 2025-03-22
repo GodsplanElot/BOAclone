@@ -47,7 +47,16 @@ def transactions(request):
 
 @login_required
 def profile(request):
-    profile, created = UserDetails.objects.get_or_create(user=request.user)
-    user_profile = UserProfile.objects.get(user=request.user)
+    # Get or create UserDetails (for user information)
+    user_details, created = UserDetails.objects.get_or_create(user=request.user)
 
-    return render(request, 'bankPages/profile.html', {'profile': profile}, {"user_profile": user_profile})
+    # Get UserProfile (for account number and balance)
+    try:
+        user_profile = UserProfile.objects.get(user=request.user)
+    except UserProfile.DoesNotExist:
+        user_profile = None  # Handle case where user has no UserProfile yet
+
+    return render(request, 'bankPages/profile.html', {
+        'profile': user_details,
+        'user_profile': user_profile,
+    })

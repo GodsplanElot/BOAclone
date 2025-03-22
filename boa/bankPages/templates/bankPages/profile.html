@@ -9,7 +9,7 @@
                 <img src="https://via.placeholder.com/100" alt="Profile Picture" class="w-24 h-24 rounded-full border-4 border-white">
                 <div class="ml-6">
                     <h2 class="text-2xl font-bold">{{ profile.first_name }} {{ profile.middle_name }} {{ profile.last_name }}</h2>
-                    <p class="text-lg">Account Number: <span class="font-semibold">{{ account_number }}</span></p>
+                    <p class="text-lg">Account Number: <span class="font-semibold">{{ user_profile.account_number }}</span></p>
                     <p class="text-lg">Username: <span class="font-semibold">{{ user.username }}</span></p>
                     <p class="text-sm">Member Since: January 2022</p>
                 </div>
@@ -23,7 +23,7 @@
                     </div>
                     <div class="p-4 bg-gray-100 rounded-lg">
                         <p class="text-gray-600">Current Balance</p>
-                        <p class="text-lg font-semibold">{{ balance }}</p>
+                        <p class="text-lg font-semibold">{{ user_profile.balance }}</p>
                     </div> 
                     <div class="p-4 bg-gray-100 rounded-lg">
                         <p class="text-gray-600">Branch</p>
@@ -71,28 +71,10 @@
                     </div>
                     <div class="p-4 bg-gray-100 rounded-lg">
                         <p class="text-gray-600">Linked Accounts</p>
-                        <p class="text-lg font-semibold">Visa •••• 1234</p>
+                        <p class="text-lg font-semibold">{{ profile.linked_account }}</p>
                     </div>
                 </div>
             </div>
         </div>
     </section> 
-
-
-
-    <!-- <p><strong>Username:</strong> {{ request.user.username }}</p> -->
-    <p><strong>Full Name:</strong> </p>
-    <p><strong>Phone:</strong> </p>
-    <p><strong>Address:</strong> </p>
-    <p><strong>Account Type:</strong> </p>
-    <p><strong>Branch:</strong> </p>
-    <p><strong>KYC Status:</strong> 
-
-    </p>
-
-
-
-
-
-
 {% endblock %}
