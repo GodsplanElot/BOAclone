@@ -53,25 +53,23 @@
                     <a href="{% url 'transactions' %}" class="text-blue-600 hover:underline">View All</a>
                 </div>
             </div>
-            <ul class="mt-4 space-y-3">
-                <li class="flex justify-between border-b pb-2">
-                    <span>Amazon Purchase</span>
-                    <span class="text-red-500">-$120.00</span>
-                </li>
-                <li class="flex justify-between border-b pb-2">
-                    <span>Salary Deposit</span>
-                    <span class="text-green-500">+$5,000.00</span>
-                </li>
-                <li class="flex justify-between border-b pb-2">
-                    <span>Utility Bill</span>
-                    <span class="text-red-500">-$230.00</span>
-                </li>
-                <li class="flex justify-between border-b pb-2">
-                    <span>Stock Investment</span>
-                    <span class="text-green-500">+$1,500.00</span>
-                </li>
-            </ul>
+        
+            {% if transactions %}
+                <ul class="mt-4 space-y-3">
+                    {% for transaction in transactions %}
+                        <li class="flex justify-between border-b pb-2">
+                            <span class="font-medium">{{ transaction.transaction_type|title }}</span>
+                            <span class="{% if transaction.transaction_type == 'withdrawal' %}text-red-500{% else %}text-green-500{% endif %}">
+                                {{ transaction.amount|floatformat:2 }}
+                            </span>
+                        </li>
+                    {% endfor %}
+                </ul>
+            {% else %}
+                <p class="text-gray-500 text-center mt-4">No recent transactions available.</p>
+            {% endif %}
         </div>
+        
     </section>
 
     {% endblock %}
