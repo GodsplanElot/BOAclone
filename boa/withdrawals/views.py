@@ -1,8 +1,6 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from .forms import WithdrawalForm
-# Create your views here.
-
 
 @login_required
 def withdrawal_request(request):
@@ -12,7 +10,7 @@ def withdrawal_request(request):
             withdrawal = form.save(commit=False)
             withdrawal.user = request.user
             withdrawal.save()
-            return render(request, "withdrawals/success.html") # Redirect after success
+            return render(request, "withdrawals/success.html")  # Redirect to a success page
     else:
         form = WithdrawalForm()
 
