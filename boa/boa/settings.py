@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'customer_support',
     'withdrawals',
     'userdetails',
+    'django.contrib.humanize',
 ]
 
 MIDDLEWARE = [
