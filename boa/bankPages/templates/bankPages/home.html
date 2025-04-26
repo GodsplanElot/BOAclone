@@ -5,7 +5,7 @@
 
 {% block content %}
  
-   <!-- Hero Section -->
+<!-- Hero Section -->
 <header class="bg-gradient-to-r from-blue-700 to-blue-500 text-white text-center py-16">
     <h2 class="text-5xl font-bold">Banking Made Simple & Secure</h2>
     <p class="text-lg mt-4 opacity-90">Your trusted partner for all financial needs.</p>
@@ -16,25 +16,34 @@
 
 <!-- Features Section -->
 <section class="container mx-auto px-6 py-12 grid md:grid-cols-3 gap-8">
-    <!-- Secure Transactions -->
     <div class="bg-white bg-opacity-90 backdrop-blur-lg p-6 shadow-lg text-center rounded-lg border border-blue-200">
         <i class="fas fa-shield-alt text-5xl text-blue-600"></i>
         <h3 class="text-2xl font-semibold mt-4 text-blue-700">Secure Transactions</h3>
         <p class="text-gray-600 mt-2">We prioritize security to protect your money.</p>
     </div>
 
-    <!-- Fast Payments -->
     <div class="bg-white bg-opacity-90 backdrop-blur-lg p-6 shadow-lg text-center rounded-lg border border-yellow-200">
         <i class="fas fa-bolt text-5xl text-yellow-500"></i>
         <h3 class="text-2xl font-semibold mt-4 text-yellow-600">Fast Payments</h3>
         <p class="text-gray-600 mt-2">Experience instant and seamless transactions.</p>
     </div>
 
-    <!-- 24/7 Support -->
     <div class="bg-white bg-opacity-90 backdrop-blur-lg p-6 shadow-lg text-center rounded-lg border border-green-200">
         <i class="fas fa-headset text-5xl text-green-600"></i>
         <h3 class="text-2xl font-semibold mt-4 text-green-700">24/7 Support</h3>
         <p class="text-gray-600 mt-2">We are here to assist you anytime, anywhere.</p>
+    </div>
+</section>
+
+<!-- Diversity in Security & Payments Section -->
+<section class="bg-white py-16">
+    <div class="container mx-auto px-6 text-center">
+        <h2 class="text-4xl font-bold text-gray-800 mb-6">Unmatched Diversity in Security & Payment Procedures</h2>
+        <p class="text-gray-600 max-w-3xl mx-auto leading-relaxed">
+            At Union Bank, we integrate a broad range of security frameworks, multi-factor authentication, 
+            encrypted payment pathways, and cutting-edge fraud protection systems. Our diverse payment solutions are designed to accommodate every need — from domestic transfers to international remittances — with absolute security at every touchpoint. 
+            Trust us to move your funds swiftly, safely, and efficiently around the globe.
+        </p>
     </div>
 </section>
 
@@ -57,7 +66,55 @@
     </div>
 </div>
 
+<!-- FAQ Section -->
+<section class="bg-blue-50 py-16">
+    <div class="container mx-auto px-6">
+        <h2 class="text-4xl font-bold text-center text-gray-800 mb-10">Frequently Asked Questions</h2>
 
+        <div class="space-y-4 max-w-2xl mx-auto">
+            <!-- FAQ 1 -->
+            <div x-data="{ open: false }" class="border border-gray-200 rounded-lg bg-white p-4">
+                <button @click="open = !open" class="w-full text-left flex justify-between items-center">
+                    <span class="font-semibold text-gray-800">How secure are my transactions?</span>
+                    <svg :class="{'rotate-180': open}" class="w-5 h-5 transform transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                    </svg>
+                </button>
+                <div x-show="open" class="mt-3 text-gray-600 text-sm">
+                    All transactions are protected by military-grade encryption and continuous monitoring for suspicious activities.
+                </div>
+            </div>
+
+            <!-- FAQ 2 -->
+            <div x-data="{ open: false }" class="border border-gray-200 rounded-lg bg-white p-4">
+                <button @click="open = !open" class="w-full text-left flex justify-between items-center">
+                    <span class="font-semibold text-gray-800">How fast can I receive transferred funds?</span>
+                    <svg :class="{'rotate-180': open}" class="w-5 h-5 transform transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                    </svg>
+                </button>
+                <div x-show="open" class="mt-3 text-gray-600 text-sm">
+                    Most transfers are completed instantly. However, international transactions may take up to 1-2 business days depending on the receiving bank's policies.
+                </div>
+            </div>
+
+            <!-- FAQ 3 -->
+            <div x-data="{ open: false }" class="border border-gray-200 rounded-lg bg-white p-4">
+                <button @click="open = !open" class="w-full text-left flex justify-between items-center">
+                    <span class="font-semibold text-gray-800">What payment methods are supported?</span>
+                    <svg :class="{'rotate-180': open}" class="w-5 h-5 transform transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                    </svg>
+                </button>
+                <div x-show="open" class="mt-3 text-gray-600 text-sm">
+                    We support Bank Transfers, PayPal, Crypto Wallets, and other modern digital payment solutions.
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Marquee Animation -->
 <style>
     @keyframes marquee {
         from { transform: translateX(100%); }
@@ -69,6 +126,6 @@
     }
 </style>
 
-    
+<script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
 
 {% endblock %}
