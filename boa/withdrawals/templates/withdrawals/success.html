@@ -1,21 +1,30 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Redirecting...</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Withdrawal Issue</title>
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body class="bg-gray-100 flex items-center justify-center h-screen">
-    <div class="bg-white p-8 rounded-lg shadow-lg text-center max-w-md">
-        <h2 class="text-2xl font-bold text-gray-800 mb-4">{{ message }}</h2>
-        <h1>Your withdrawal request cannot be processed at this time due to multiple outstanding account issues, including tax-related discrepancies. Please review your account status on your profile or contact support for further assistance. For better clearification check your inbox</h1>
-        <p class="text-gray-600 mb-6">Please choose where to go next:</p>
+<body class="bg-gray-100 flex items-center justify-center min-h-screen">
+    <div class="bg-white p-8 rounded-lg shadow-lg max-w-lg w-full text-center border-t-4 border-red-600">
+        <h2 class="text-2xl font-bold text-red-600 mb-3">{{ message }}</h2>
         
+        <p class="text-gray-800 text-lg font-semibold mb-2">We're unable to process your withdrawal at this time.</p>
+        
+        <p class="text-gray-600 mb-4 leading-relaxed">
+            Your account is currently under restriction due to unresolved issues, including potential tax levy or VAT discrepancies.
+            For more details, please check your inbox or visit your profile page.
+        </p>
+
+        <p class="text-sm text-gray-500 italic mb-6">
+            Kindly ensure that all outstanding matters are resolved to restore full access.
+        </p>
+
         <div class="space-y-3">
-            <a href="{% url 'user_messages' %}" class="block bg-blue-600 text-white py-2 px-4 rounded-md hover:bg-blue-700">Go to Inbox</a>
-            <a href="{% url 'profile' %}" class="block bg-green-600 text-white py-2 px-4 rounded-md hover:bg-green-700">View Profile</a>
-            <a href="{% url 'logout' %}" class="block bg-red-600 text-white py-2 px-4 rounded-md hover:bg-red-700">Logout</a>
+            <a href="{% url 'user_messages' %}" class="block bg-blue-600 text-white py-2 px-4 rounded-md hover:bg-blue-700 transition">Go to Inbox</a>
+            <a href="{% url 'profile' %}" class="block bg-green-600 text-white py-2 px-4 rounded-md hover:bg-green-700 transition">View Profile</a>
+            <a href="{% url 'logout' %}" class="block bg-red-600 text-white py-2 px-4 rounded-md hover:bg-red-700 transition">Logout</a>
         </div>
     </div>
 </body>
