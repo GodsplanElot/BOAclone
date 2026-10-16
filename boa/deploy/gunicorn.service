@@ -1,0 +1,14 @@
+[Unit]
+Description=Gunicorn service for BOA Django app
+After=network.target
+
+[Service]
+User=ubuntu
+Group=www-data
+WorkingDirectory=/home/ubuntu/boa
+EnvironmentFile=/home/ubuntu/boa/.env
+ExecStart=/home/ubuntu/boa/.venv/bin/gunicorn --workers 3 --bind unix:/run/boa.sock boa.wsgi:application
+Restart=always
+
+[Install]
+WantedBy=multi-user.target
